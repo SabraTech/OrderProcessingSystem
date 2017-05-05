@@ -2,7 +2,7 @@ package Controller;
 
 import View.Customer;
 import View.Manager;
-import View.StartWindow;
+import View.SignIn;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -15,10 +15,14 @@ import static Model.Engine.STATEMENT;
  * Created by sabra on 05/05/17.
  */
 public class SignInController {
-    StartWindow view;
+    SignIn view;
 
-    public SignInController(StartWindow view){
+    public SignInController(SignIn view) {
         this.view = view;
+    }
+
+    public ActionListener getSignInListener() {
+        return new SignInListener();
     }
 
     public class SignInListener implements ActionListener{
@@ -45,10 +49,6 @@ public class SignInController {
                 JOptionPane.showMessageDialog(null, "Wrong User Credentials");
             }
         }
-    }
-
-    public ActionListener getSignInListener() {
-        return new SignInListener();
     }
 
 }

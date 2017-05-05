@@ -32,6 +32,20 @@ public class Customer extends JFrame {
         logOut = new JButton("Log Out");
 
         edit.addActionListener(handler.getEditListener());
+        add.addActionListener(handler.getAddListener());
+        search.addActionListener(handler.getSearchListener());
+        manageCart.addActionListener(handler.getManageListener());
+        checkOut.addActionListener(handler.getCheckOutListener());
+        logOut.addActionListener(handler.getlogOutListener());
+
+        JPanel p = new JPanel();
+        p.add(edit);
+        p.add(add);
+        p.add(search);
+        p.add(manageCart);
+        p.add(checkOut);
+        p.add(logOut);
+        content.add(p, CENTER_ALIGNMENT);
 
     }
 }

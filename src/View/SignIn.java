@@ -1,18 +1,26 @@
 package View;
 
+import Controller.SignInController;
+
 import javax.swing.*;
 import java.awt.event.*;
 
-public class StartWindow extends JDialog {
+public class SignIn extends JDialog {
     private JPanel contentPane;
     private JButton buttonCancel;
-    private JButton existingUserButton;
-    private JButton newUserButton;
+    private JTextField textField1;
+    private JButton signInButton;
+    private JPasswordField passwordField1;
+    private SignInController signInController;
 
-    public StartWindow() {
+    public SignIn() {
+
         setLocationRelativeTo(null);
         setContentPane(contentPane);
         setModal(true);
+        getRootPane().setDefaultButton(signInButton);
+        signInController = new SignInController(this);
+        signInButton.addActionListener(signInController.getSignInListener());
 
         buttonCancel.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -34,33 +42,17 @@ public class StartWindow extends JDialog {
                 onCancel();
             }
         }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
-
-        existingUserButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                SignIn dialog = new SignIn();
-                dialog.pack();
-                setVisible(false);
-                dispose();
-                dialog.setVisible(true);
-            }
-        });
-
-        newUserButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                SignUp dialog = new SignUp();
-                dialog.pack();
-                setVisible(false);
-                dispose();
-                dialog.setVisible(true);
-            }
-        });
     }
 
     private void onCancel() {
-        // add your code here if necessary
         setVisible(false);
         dispose();
+    }
+
+    public String[] getSignInData() {
+        String[] data = new String[2];
+        data[0] = textField1.getText();
+        data[1] = String.valueOf(passwordField1.getPassword());
+        return data;
     }
 }

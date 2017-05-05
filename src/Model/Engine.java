@@ -9,12 +9,11 @@ import java.sql.Statement;
  */
 public class Engine {
 
-    public static String LOGGED_USER = null;
     static final String JDDC_DRIVER = "com.mysql.jdbc.Drive";
     static final String DataBaseURL = "jdbc:mysql://localhost/order_System";
     static final String USER = "root";
     static final String PASSWORD = "root";
-    static final String MgrCode = "0000";
+    public static String LOGGED_USER = null;
     public static Connection CONNECTION = null;
     public static Statement STATEMENT = null;
 
@@ -28,7 +27,4 @@ public class Engine {
         }
     }
 
-    public static String getMgrCode(){
-        return MgrCode;
-    }
 }

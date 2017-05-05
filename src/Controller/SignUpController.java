@@ -1,7 +1,7 @@
 package Controller;
 
-import Model.Engine;
-import View.StartWindow;
+import View.SignIn;
+import View.SignUp;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -15,9 +15,9 @@ import static Model.Engine.STATEMENT;
  * Created by sabra on 05/05/17.
  */
 public class SignUpController {
-    StartWindow view;
+    SignUp view;
 
-    public SignUpController(StartWindow view){
+    public SignUpController(SignUp view){
         this.view = view;
     }
 
@@ -27,10 +27,6 @@ public class SignUpController {
         public void actionPerformed(ActionEvent e){
             ResultSet res = null;
             ArrayList<String> data = view.getSignUpData();
-            String type = "Customer";
-            if(data.get(7).equals(Engine.getMgrCode())){
-                type = "Manager";
-            }
             String sql = "INSERT INTO User VALUES ( \"" + data.get(0) + "\", " +
                     "\"" + data.get(1) + "\" , " +
                     "\"" + data.get(2) + "\" , " +
@@ -38,10 +34,15 @@ public class SignUpController {
                     "\"" + data.get(4) + "\" , " +
                     "\"" + data.get(5) + "\" , " +
                     "\"" + data.get(6) + "\" , " +
-                    type + " )";
+                    "\"" + data.get(7) + "\" ) ";
             try{
                 STATEMENT.executeQuery(sql);
                 JOptionPane.showMessageDialog(null, "Singed Up Successfully!");
+                SignIn dialog = new SignIn();
+                dialog.pack();
+                view.setVisible(false);
+                view.dispose();
+                dialog.setVisible(true);
             }catch(Exception e1){
                 String errorMsg = e1.getMessage();
                 JOptionPane.showMessageDialog(null, errorMsg);
@@ -49,7 +50,34 @@ public class SignUpController {
         }
     }
 
-    public ActionListener getSignUpListener() {
+    public class SignUpListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e){
+            ResultSet res = null;
+            ArrayList<String> data = view.getSignUpData();
+            String sql = "INSERT INTO User VALUES ( \"" + data.get(0) + "\", " +
+                    "\"" + data.get(1) + "\" , " +
+                    "\"" + data.get(2) + "\" , " +
+                    "\"" + data.get(3) + "\" , " +
+                    "\"" + data.get(4) + "\" , " +
+                    "\"" + data.get(5) + "\" , " +
+                    "\"" + data.get(6) + "\" , " +
+                    "\"" + data.get(7) + "\" ) ";
+            try{
+                STATEMENT.executeQuery(sql);
+                JOptionPane.showMessageDialog(null, "Singed Up Successfully!");
+                SignIn dialog = new SignIn();
+                dialog.pack();
+                view.setVisible(false);
+                view.dispose();
+                dialog.setVisible(true);
+            }catch(Exception e1){
+                String errorMsg = e1.getMessage();
+                JOptionPane.showMessageDialog(null, errorMsg);
+            }
+        }
+    }    public ActionListener getSignUpListener() {
         return new SignUpController.SignUpListener();
     }
 }
