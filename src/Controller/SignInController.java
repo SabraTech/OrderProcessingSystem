@@ -9,6 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 
+import static Model.Engine.LOGGED_USER;
 import static Model.Engine.STATEMENT;
 
 /**
@@ -36,6 +37,7 @@ public class SignInController {
                 res = STATEMENT.executeQuery(sql);
                 res.next();
                 String type = res.getString("Type");
+                LOGGED_USER = res.getString("username");
                 if(type.equalsIgnoreCase("Manager")){
                     new Manager(res);
                     view.setVisible(false);

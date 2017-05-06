@@ -6,6 +6,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.sql.ResultSet;
 
+import static Model.Engine.LOGGED_USER;
+
 /**
  * Created by sabra on 05/05/17.
  */
@@ -14,6 +16,7 @@ public class Customer extends JFrame {
     JButton edit, add, search, manageCart, checkOut, logOut;
     private JToolBar optionsBar;
     private ActionHandler handler;
+    private JLabel activeUser;
 
     public Customer(ResultSet res){
         super("");
@@ -23,6 +26,7 @@ public class Customer extends JFrame {
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         content.setLayout(new BorderLayout());
 
+        activeUser = new JLabel("Hi, " + LOGGED_USER);
         handler = new ActionHandler();
         edit = new JButton("Edit Personal Information");
         add = new JButton("Add Book");
@@ -39,6 +43,7 @@ public class Customer extends JFrame {
         logOut.addActionListener(handler.getlogOutListener());
 
         JPanel p = new JPanel();
+        p.add(activeUser);
         p.add(edit);
         p.add(add);
         p.add(search);
