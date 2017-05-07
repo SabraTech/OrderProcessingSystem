@@ -1,6 +1,6 @@
 package View;
 
-import Controller.ActionHandler;
+import Controller.ActionHandlerCustomer;
 
 import javax.swing.*;
 import java.awt.*;
@@ -15,7 +15,7 @@ public class Customer extends JFrame {
 
     JButton edit, add, search, manageCart, checkOut, logOut;
     private JToolBar optionsBar;
-    private ActionHandler handler;
+    private ActionHandlerCustomer handler;
     private JLabel activeUser;
 
     public Customer(ResultSet res){
@@ -27,7 +27,7 @@ public class Customer extends JFrame {
         content.setLayout(new BorderLayout());
 
         activeUser = new JLabel("Hi, " + LOGGED_USER);
-        handler = new ActionHandler();
+        handler = new ActionHandlerCustomer();
         edit = new JButton("Edit Personal Information");
         add = new JButton("Add Book");
         search = new JButton("Search Book");

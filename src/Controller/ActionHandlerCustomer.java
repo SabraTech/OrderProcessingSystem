@@ -8,7 +8,7 @@ import java.awt.event.ActionListener;
 /**
  * Created by sabra on 05/05/17.
  */
-public class ActionHandler {
+public class ActionHandlerCustomer {
 
     public ActionListener getEditListener() {
         return new EditListener();
@@ -37,14 +37,18 @@ public class ActionHandler {
     private class EditListener implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e){
-            Edit eActionView = new Edit();
+            EditCustomer dialog = new EditCustomer();
+            dialog.pack();
+            dialog.setVisible(true);
         }
     }
 
     private class AddListener implements ActionListener{
         @Override
-        public void actionPerformed(ActionEvent e){
-            Add aActionView = new Add();
+        public void actionPerformed(ActionEvent e) {
+            AddCustomer dialog = new AddCustomer();
+            dialog.pack();
+            dialog.setVisible(true);
         }
     }
 
