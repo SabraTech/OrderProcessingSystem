@@ -26,6 +26,34 @@ public class SignInController {
         return new SignInListener();
     }
 
+    private void CreateShoppingCart() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("CREATE TABLE `order_System`.`ShoppingCart` ( '");
+        sb.append("username varchar(20) not null, ");
+        sb.append("ISBN int not null, ");
+        sb.append("num_books int, ");
+        sb.append("price double, ");
+        sb.append("primary key (username, ISBN) );");
+        StringBuilder sb1 = new StringBuilder();
+        sb1.append("ALTER TABLE `order_System`.`ShoppingCart` ADD CONSTRATNT");
+        sb1.append("FOREIGN KEY (`username`)");
+        sb1.append("REFERENCES `order_System`.`User` (`username`)");
+        sb1.append("ON DELETE cascade ON UPDATE cascade;");
+        StringBuilder sb2 = new StringBuilder();
+        sb2.append("ALTER TABLE `order_System`.`ShoppingCart` ADD CONSTRATNT");
+        sb2.append("FOREIGN KEY (`ISBN`)");
+        sb2.append("REFERENCES `order_System`.`Book` (`book_ISBN`)");
+        sb2.append("ON DELETE cascade ON UPDATE cascade;");
+        try {
+            STATEMENT.execute(sb.toString());
+            STATEMENT.execute(sb1.toString());
+            STATEMENT.execute(sb2.toString());
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Can not create shopping cart!");
+        }
+
+    }
+
     public class SignInListener implements ActionListener{
 
         @Override
@@ -43,6 +71,7 @@ public class SignInController {
                     view.setVisible(false);
                     view.dispose();
                 }else{
+                    CreateShoppingCart();
                     new Customer(res);
                     view.setVisible(false);
                     view.dispose();
