@@ -1,6 +1,7 @@
 package View;
 
 import Controller.ActionHandlerCustomer;
+import Controller.ActionsControllerCustomer.LogOutController;
 
 import javax.swing.*;
 import java.awt.*;
@@ -16,10 +17,12 @@ public class Customer extends JFrame {
     JButton edit, add, search, manageCart, checkOut, logOut;
     private JToolBar optionsBar;
     private ActionHandlerCustomer handler;
+    private LogOutController logOutController;
     private JLabel activeUser;
 
     public Customer(ResultSet res){
         super("");
+        logOutController = new LogOutController(this);
         this.setVisible(true);
         Container content = this.getContentPane();
         this.setSize(800,600);
@@ -40,7 +43,7 @@ public class Customer extends JFrame {
         search.addActionListener(handler.getSearchListener());
         manageCart.addActionListener(handler.getManageListener());
         checkOut.addActionListener(handler.getCheckOutListener());
-        logOut.addActionListener(handler.getlogOutListener());
+        logOut.addActionListener(logOutController.getLogOutListener());
 
         JPanel p = new JPanel();
         p.add(activeUser);

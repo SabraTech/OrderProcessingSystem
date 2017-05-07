@@ -30,11 +30,7 @@ public class ActionHandlerCustomer {
         return new CheckOutListener();
     }
 
-    public ActionListener getlogOutListener() {
-        return new LogOutListener();
-    }
-
-    private class EditListener implements ActionListener{
+    public class EditListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e){
             EditCustomer dialog = new EditCustomer();
@@ -43,7 +39,7 @@ public class ActionHandlerCustomer {
         }
     }
 
-    private class AddListener implements ActionListener{
+    public class AddListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
             AddCustomer dialog = new AddCustomer();
@@ -52,31 +48,26 @@ public class ActionHandlerCustomer {
         }
     }
 
-    private class SearchListener implements ActionListener{
+    public class SearchListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e){
-            Search sActionView = new Search();
+            SearchCustomer dialog = new SearchCustomer();
+            dialog.pack();
+            dialog.setVisible(true);
         }
     }
 
-    private class ManageListener implements ActionListener{
+    public class ManageListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e){
             ManageCart mActionView = new ManageCart();
         }
     }
 
-    private class CheckOutListener implements ActionListener{
+    public class CheckOutListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e){
             CheckOut cActionView = new CheckOut();
-        }
-    }
-
-    private class LogOutListener implements ActionListener{
-        @Override
-        public void actionPerformed(ActionEvent e){
-            LogOut lActionView = new LogOut();
         }
     }
 }
