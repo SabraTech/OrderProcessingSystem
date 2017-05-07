@@ -5,7 +5,6 @@ import Controller.ActionsControllerCustomer.LogOutController;
 
 import javax.swing.*;
 import java.awt.*;
-import java.sql.ResultSet;
 
 import static Model.Engine.LOGGED_USER;
 
@@ -15,13 +14,12 @@ import static Model.Engine.LOGGED_USER;
 public class Customer extends JFrame {
 
     JButton edit, add, search, manageCart, checkOut, logOut;
-    private JToolBar optionsBar;
     private ActionHandlerCustomer handler;
     private LogOutController logOutController;
     private JLabel activeUser;
 
-    public Customer(ResultSet res){
-        super("");
+    public Customer() {
+        super();
         logOutController = new LogOutController(this);
         this.setVisible(true);
         Container content = this.getContentPane();
@@ -32,8 +30,8 @@ public class Customer extends JFrame {
         activeUser = new JLabel("Hi, " + LOGGED_USER);
         handler = new ActionHandlerCustomer();
         edit = new JButton("Edit Personal Information");
-        add = new JButton("Add Book");
-        search = new JButton("Search Book");
+        add = new JButton("Add Book to Cart");
+        search = new JButton("Search for Book");
         manageCart = new JButton("Edit Shopping Cart");
         checkOut = new JButton("Check Out");
         logOut = new JButton("Log Out");

@@ -28,7 +28,7 @@ public class EditController {
         public void actionPerformed(ActionEvent e) {
             ArrayList<String> data = view.getUpdatedInfo();
             StringBuilder sb = new StringBuilder();
-            sb.append("UPDATE `order_System`.`Book` ");
+            sb.append("UPDATE `order_System`.`User` ");
             sb.append("SET password = \"" + data.get(0) + "\", ");
             sb.append("firstname = \"" + data.get(1) + "\", ");
             sb.append("lastname = \"" + data.get(2) + "\", ");

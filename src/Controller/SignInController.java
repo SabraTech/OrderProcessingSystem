@@ -67,12 +67,12 @@ public class SignInController {
                 String type = res.getString("Type");
                 LOGGED_USER = res.getString("username");
                 if(type.equalsIgnoreCase("Manager")){
-                    new Manager(res);
+                    new Manager();
                     view.setVisible(false);
                     view.dispose();
                 }else{
                     CreateShoppingCart();
-                    new Customer(res);
+                    new Customer();
                     view.setVisible(false);
                     view.dispose();
                 }
