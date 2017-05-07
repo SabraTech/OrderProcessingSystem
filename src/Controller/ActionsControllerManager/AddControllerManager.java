@@ -1,30 +1,42 @@
-package Controller.ActionsController;
+package Controller.ActionsControllerManager;
 
-import View.ActionsViews.Add;
+import View.ActionsViewsManager.AddManager;
 
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
-/**
- * Created by sabra on 06/05/17.
- */
-public class AddController {
-    Add view;
+import static Model.Engine.STATEMENT;
 
-    public AddController(Add view) {
+/**
+ * Created by sabra on 07/05/17.
+ */
+public class AddControllerManager {
+    AddManager view;
+
+    public AddControllerManager(AddManager view) {
         this.view = view;
     }
 
-    public class AddListener implements ActionListener {
+    public ActionListener getAddManagerListener() {
+        return new AddControllerManager.AddManagerListener();
+    }
+
+    public class AddManagerListener implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
             ResultSet res = null;
             ArrayList<String> data = view.getBookData();
             String[] pdata = view.getPublisherData();
-            String sqlPublisher = "INSERT INTO Publisher VALUES"
+            StringBuilder sb1 = new StringBuilder();
+            sb1.append("INSERT INTO Publisher VALUES (");
+            sb1.append("\"" + pdata[0] + "\", ");
+            sb1.append("\"" + pdata[1] + "\", ");
+            sb1.append("\"" + pdata[2] + "\") ");
+            String sqlPublisher = sb1.toString();
             int bookId = Integer.parseInt(data.get(0));
             double price = Double.parseDouble(data.get(4));
             int threshold = Integer.parseInt(data.get(6));
@@ -45,6 +57,17 @@ public class AddController {
                 sb.append("\")");
                 sqlsAuthors.add(sb.toString());
                 sb = new StringBuilder();
+            }
+            try {
+                STATEMENT.executeQuery(sqlPublisher);
+                STATEMENT.executeQuery(sqlBook);
+                for (String s : sqlsAuthors) {
+                    STATEMENT.executeQuery(s);
+                }
+                JOptionPane.showMessageDialog(null, "Book Added to database!");
+            } catch (Exception e1) {
+                String errorMsg = e1.getMessage();
+                JOptionPane.showMessageDialog(null, errorMsg);
             }
         }
     }
