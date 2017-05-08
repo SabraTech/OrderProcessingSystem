@@ -41,11 +41,11 @@ public class AddControllerManager {
             double price = Double.parseDouble(data.get(4));
             int threshold = Integer.parseInt(data.get(6));
             int numOfBooks = Integer.parseInt(data.get(7));
-            String sqlBook = "INSERT INTO User VALUES ( " + bookId + ", " +
+            String sqlBook = "INSERT INTO Book VALUES ( " + bookId + ", " +
                     "\"" + data.get(1) + "\" , " +
                     "\"" + data.get(2) + "\" , " +
                     "\"" + data.get(3) + "\" , " + price + ", " +
-                    "\"" + data.get(5) + "\" , " + data.get(6) + ", " + data.get(7) + ") ";
+                    "\"" + data.get(5) + "\" , " + threshold + ", " + numOfBooks + ") ";
             String[] parts = data.get(8).split(",");
             ArrayList<String> sqlsAuthors = new ArrayList<String>();
             StringBuilder sb = new StringBuilder();
@@ -59,10 +59,10 @@ public class AddControllerManager {
                 sb = new StringBuilder();
             }
             try {
-                STATEMENT.executeQuery(sqlPublisher);
-                STATEMENT.executeQuery(sqlBook);
+                STATEMENT.execute(sqlPublisher);
+                STATEMENT.execute(sqlBook);
                 for (String s : sqlsAuthors) {
-                    STATEMENT.executeQuery(s);
+                    STATEMENT.execute(s);
                 }
                 JOptionPane.showMessageDialog(null, "Book Added to database!");
             } catch (Exception e1) {

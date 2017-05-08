@@ -40,7 +40,7 @@ public class SignUpController {
                     "\"" + data.get(6) + "\" , " +
                     "\"" + data.get(7) + "\" ) ";
             try{
-                STATEMENT.executeQuery(sql);
+                STATEMENT.execute(sql);
                 JOptionPane.showMessageDialog(null, "Singed Up Successfully!");
                 SignIn dialog = new SignIn();
                 dialog.pack();

@@ -1,6 +1,6 @@
 package Controller;
 
-import View.Customer;
+import View.CustomerUI;
 import View.Manager;
 import View.SignIn;
 
@@ -28,20 +28,20 @@ public class SignInController {
 
     private void CreateShoppingCart() {
         StringBuilder sb = new StringBuilder();
-        sb.append("CREATE TABLE `order_System`.`ShoppingCart` ( '");
-        sb.append("item_ID int not null auto_increment, ");
+        sb.append("CREATE TABLE `order_System`.`ShoppingCart` ( ");
+        sb.append("item_ID MEDIUMINT not null auto_increment, ");
         sb.append("username varchar(20) not null, ");
         sb.append("ISBN int not null, ");
         sb.append("num_books int, ");
         sb.append("price double, ");
-        sb.append("primary key (item_ID) );");
+        sb.append("primary key (item_ID));");
         StringBuilder sb1 = new StringBuilder();
-        sb1.append("ALTER TABLE `order_System`.`ShoppingCart` ADD CONSTRATNT");
+        sb1.append("ALTER TABLE `order_System`.`ShoppingCart` ADD CONSTRAINT `shopfk1` ");
         sb1.append("FOREIGN KEY (`username`)");
         sb1.append("REFERENCES `order_System`.`User` (`username`)");
         sb1.append("ON DELETE cascade ON UPDATE cascade;");
         StringBuilder sb2 = new StringBuilder();
-        sb2.append("ALTER TABLE `order_System`.`ShoppingCart` ADD CONSTRATNT");
+        sb2.append("ALTER TABLE `order_System`.`ShoppingCart` ADD CONSTRAINT `shopfk2` ");
         sb2.append("FOREIGN KEY (`ISBN`)");
         sb2.append("REFERENCES `order_System`.`Book` (`book_ISBN`)");
         sb2.append("ON DELETE cascade ON UPDATE cascade;");
@@ -61,6 +61,7 @@ public class SignInController {
         public void actionPerformed(ActionEvent e){
             ResultSet res = null;
             String[] data = view.getSignInData();
+            System.out.println(data[0]);
             String sql = "SELECT * FROM User WHERE username = \"" + data[0] + "\" and password = \"" + data[1] + "\"";
             try{
                 res = STATEMENT.executeQuery(sql);
@@ -68,16 +69,21 @@ public class SignInController {
                 String type = res.getString("Type");
                 LOGGED_USER = res.getString("username");
                 if(type.equalsIgnoreCase("Manager")){
-                    new Manager();
+                    Manager dialog = new Manager();
+                    dialog.pack();
                     view.setVisible(false);
                     view.dispose();
+                    dialog.setVisible(true);
                 }else{
                     CreateShoppingCart();
-                    new Customer();
+                    CustomerUI dialog = new CustomerUI();
+                    dialog.pack();
                     view.setVisible(false);
                     view.dispose();
+                    dialog.setVisible(true);
                 }
             }catch(Exception e1){
+                e1.printStackTrace();
                 JOptionPane.showMessageDialog(null, "Wrong User Credentials");
             }
         }

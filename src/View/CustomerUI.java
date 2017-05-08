@@ -1,38 +1,40 @@
 package View;
 
-import Controller.ActionHandlerManager;
+import Controller.ActionHandlerCustomer;
+import Controller.ActionsControllerCustomer.LogOutController;
 import Model.Engine;
 
 import javax.swing.*;
 import java.awt.event.*;
 
-public class Manager extends JDialog {
+public class CustomerUI extends JDialog {
     private JPanel contentPane;
     private JButton buttonOK;
     private JButton buttonCancel;
-    private JButton button1;
-    private JButton button2;
-    private JButton button3;
-    private JButton button4;
-    private JButton button5;
-    private JButton button6;
-    private JButton button7;
+    private JButton addBookToCartButton;
+    private JButton editPersonalInformationButton;
+    private JButton searchForBookButton;
+    private JButton editShoppingCartButton;
+    private JButton checkOutButton;
+    private JButton logOutButton;
     private JLabel labelString;
-    private ActionHandlerManager handler;
+    private ActionHandlerCustomer actionHandlerCustomer;
+    private LogOutController logOutController;
 
-    public Manager() {
+    public CustomerUI() {
         setContentPane(contentPane);
         setModal(true);
         getRootPane().setDefaultButton(buttonOK);
-        handler = new ActionHandlerManager();
-        button1.addActionListener(handler.getAddBookListener());
-        button2.addActionListener(handler.getModifyListener());
-        button3.addActionListener(handler.getPlaceOrderListener());
-        button4.addActionListener(handler.getConfirmListener());
-        button5.addActionListener(handler.getPromoteListener());
-        button6.addActionListener(handler.getViewReportsListener());
-        button7.addActionListener(handler.getLogOutManagerListener());
+        actionHandlerCustomer = new ActionHandlerCustomer();
+        logOutController = new LogOutController(this);
+        addBookToCartButton.addActionListener(actionHandlerCustomer.getAddListener());
+        editPersonalInformationButton.addActionListener(actionHandlerCustomer.getEditListener());
+        searchForBookButton.addActionListener(actionHandlerCustomer.getSearchListener());
+        editShoppingCartButton.addActionListener(actionHandlerCustomer.getManageListener());
+        checkOutButton.addActionListener(actionHandlerCustomer.getCheckOutListener());
+        logOutButton.addActionListener(logOutController.getLogOutListener());
         labelString.setText("Hi, " + Engine.LOGGED_USER);
+
         buttonOK.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 onOK();

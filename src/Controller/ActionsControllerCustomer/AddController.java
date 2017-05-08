@@ -31,13 +31,19 @@ public class AddController {
             int cnt = Integer.parseInt(data[1]);
             try {
                 ResultSet price = Engine.STATEMENT.executeQuery("SELECT price FROM Book WHERE book_ISBN = " + isbn + ";");
+                Double p = 1.0;
+                while (price.next()) {
+                    p = price.getDouble(1);
+                }
                 StringBuilder sb = new StringBuilder();
-                sb.append("INSERT INTO ShoppingCart VALUES ( ");
+                sb.append("INSERT INTO ShoppingCart (username, ISBN, num_books, price) VALUES ( ");
                 sb.append("\"" + Engine.LOGGED_USER + "\", ");
-                sb.append(isbn);
-                sb.append(cnt);
-                sb.append(cnt * price.getDouble("price") + ")");
+                sb.append(isbn + ", ");
+                sb.append(cnt + ", ");
+                sb.append(cnt * p + ")");
+                Engine.STATEMENT.execute(sb.toString());
             } catch (Exception e1) {
+                e1.printStackTrace();
                 JOptionPane.showMessageDialog(null, "Error in adding new book in cart!");
             }
         }

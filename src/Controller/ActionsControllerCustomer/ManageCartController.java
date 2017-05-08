@@ -41,8 +41,10 @@ public class ManageCartController {
         sb.append("SELECT sum(price) FROM `order_System`.`ShoppingCart`;");
         try {
             ans = Engine.STATEMENT.executeQuery(sb.toString());
+            ans.next();
             res = ans.getDouble(1);
         } catch (Exception e) {
+            e.printStackTrace();
             JOptionPane.showMessageDialog(null, "Error in view of total price!");
         }
         return res;
@@ -63,6 +65,7 @@ public class ManageCartController {
                 view.fillTheViewTable();
                 view.viewTotalPrice();
             } catch (Exception e1) {
+                e1.printStackTrace();
                 JOptionPane.showMessageDialog(null, "Error in deleting item from shopping Cart!");
             }
         }
