@@ -60,7 +60,9 @@ public class ActionHandlerCustomer {
     public class ManageListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e){
-            ManageCart mActionView = new ManageCart();
+            ManageCartCustomer dialog = new ManageCartCustomer();
+            dialog.pack();
+            dialog.setVisible(true);
         }
     }
 
