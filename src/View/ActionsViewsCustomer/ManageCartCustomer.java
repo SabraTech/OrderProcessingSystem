@@ -24,6 +24,7 @@ public class ManageCartCustomer extends JDialog {
         setModal(true);
         getRootPane().setDefaultButton(buttonOK);
         manageCartController = new ManageCartController(this);
+        viewTotalPrice();
         fillTheViewTable();
         deleteButton.addActionListener(manageCartController.getManageCartControllerListener());
 
@@ -65,6 +66,11 @@ public class ManageCartCustomer extends JDialog {
 
     public String getIdtoDelete() {
         return textField1.getText();
+    }
+
+    public void viewTotalPrice() {
+        Double total = manageCartController.getTotalPrice();
+        totalPriceLabel.setText(String.valueOf(total));
     }
 
     public void fillTheViewTable() {
