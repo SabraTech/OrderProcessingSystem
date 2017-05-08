@@ -29,11 +29,12 @@ public class SignInController {
     private void CreateShoppingCart() {
         StringBuilder sb = new StringBuilder();
         sb.append("CREATE TABLE `order_System`.`ShoppingCart` ( '");
+        sb.append("item_ID int not null auto_increment, ");
         sb.append("username varchar(20) not null, ");
         sb.append("ISBN int not null, ");
         sb.append("num_books int, ");
         sb.append("price double, ");
-        sb.append("primary key (username, ISBN) );");
+        sb.append("primary key (item_ID) );");
         StringBuilder sb1 = new StringBuilder();
         sb1.append("ALTER TABLE `order_System`.`ShoppingCart` ADD CONSTRATNT");
         sb1.append("FOREIGN KEY (`username`)");
