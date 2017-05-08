@@ -4,6 +4,10 @@ import Controller.ActionsControllerCustomer.SearchController;
 
 import javax.swing.*;
 import java.awt.event.*;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+
+import static View.ActionsViewsCustomer.ManageCartCustomer.buildTableModel;
 
 public class SearchCustomer extends JDialog {
     private JPanel contentPane;
@@ -74,11 +78,15 @@ public class SearchCustomer extends JDialog {
         return textField1.getText();
     }
 
-    public JTable getTable() {
-        return table1;
-    }
-
-    public JPanel getTablePanel() {
-        return tablePanel;
+    public void fillTheTable(ResultSet res) {
+        ArrayList columnNames = new ArrayList();
+        ArrayList data = new ArrayList();
+        try {
+            table1.setModel(buildTableModel(res));
+            //tablePanel.add(new JScrollPane(table1), BorderLayout.SOUTH);
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Error in view Results!");
+        }
     }
 }

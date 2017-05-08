@@ -27,13 +27,14 @@ public class PlaceOrderController {
         public void actionPerformed(ActionEvent e) {
             String[] data = view.getOrderData();
             StringBuilder sb = new StringBuilder();
-            sb.append("INSERT INTO `order_System`.`Orders` VALUES ( ");
+            sb.append("INSERT INTO `order_System`.`Orders` (book_ISBN, quantity) VALUES ( ");
             sb.append(Integer.parseInt(data[0]) + ", ");
-            sb.append(Integer.parseInt(data[1]) + ";");
+            sb.append(Integer.parseInt(data[1]) + ");");
             try {
                 Engine.STATEMENT.execute(sb.toString());
                 JOptionPane.showMessageDialog(null, "Order Placed!");
             } catch (Exception e1) {
+                e1.printStackTrace();
                 JOptionPane.showMessageDialog(null, "error in placing Order!");
             }
         }

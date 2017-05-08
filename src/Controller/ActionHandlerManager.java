@@ -1,6 +1,9 @@
 package Controller;
 
 import View.ActionsViewsManager.AddManager;
+import View.ActionsViewsManager.ConfirmOrder;
+import View.ActionsViewsManager.PlaceOrder;
+import View.ActionsViewsManager.PromoteUser;
 import View.StartWindow;
 
 import java.awt.event.ActionEvent;
@@ -60,7 +63,7 @@ public class ActionHandlerManager {
     public class PlaceOrderListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            AddManager dialog = new AddManager();
+            PlaceOrder dialog = new PlaceOrder();
             dialog.pack();
             dialog.setVisible(true);
         }
@@ -69,7 +72,7 @@ public class ActionHandlerManager {
     public class ConfirmListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            AddManager dialog = new AddManager();
+            ConfirmOrder dialog = new ConfirmOrder();
             dialog.pack();
             dialog.setVisible(true);
         }
@@ -78,7 +81,7 @@ public class ActionHandlerManager {
     public class PromoteListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            AddManager dialog = new AddManager();
+            PromoteUser dialog = new PromoteUser();
             dialog.pack();
             dialog.setVisible(true);
         }
@@ -98,6 +101,7 @@ public class ActionHandlerManager {
         public void actionPerformed(ActionEvent e) {
             StartWindow dialog = new StartWindow();
             dialog.pack();
+            // close the view
             dialog.setVisible(true);
         }
     }
