@@ -1,6 +1,8 @@
 package View;
 
+import Controller.ActionHandlerCustomer;
 import Controller.ActionHandlerManager;
+import Controller.ActionsControllerCustomer.LogOutController;
 import Model.Engine;
 
 import javax.swing.*;
@@ -18,20 +20,35 @@ public class Manager extends JDialog {
     private JButton button6;
     private JButton button7;
     private JLabel labelString;
+    private JButton addBookToCartButton;
+    private JButton editPersonalInformationButton;
+    private JButton searchForBookButton;
+    private JButton editShoppingCartButton;
+    private JButton checkOutButton;
     private ActionHandlerManager handler;
-
+    private ActionHandlerCustomer actionHandlerCustomer;
+    private LogOutController logOutController;
     public Manager() {
         setContentPane(contentPane);
         setModal(true);
         getRootPane().setDefaultButton(buttonOK);
+        logOutController = new LogOutController(this);
         handler = new ActionHandlerManager();
+        actionHandlerCustomer = new ActionHandlerCustomer();
         button1.addActionListener(handler.getAddBookListener());
         button2.addActionListener(handler.getModifyListener());
         button3.addActionListener(handler.getPlaceOrderListener());
         button4.addActionListener(handler.getConfirmListener());
         button5.addActionListener(handler.getPromoteListener());
         button6.addActionListener(handler.getViewReportsListener());
-        button7.addActionListener(handler.getLogOutManagerListener());
+        button7.addActionListener(logOutController.getLogOutListener());
+
+        addBookToCartButton.addActionListener(actionHandlerCustomer.getAddListener());
+        editPersonalInformationButton.addActionListener(actionHandlerCustomer.getEditListener());
+        searchForBookButton.addActionListener(actionHandlerCustomer.getSearchListener());
+        editShoppingCartButton.addActionListener(actionHandlerCustomer.getManageListener());
+        checkOutButton.addActionListener(actionHandlerCustomer.getCheckOutListener());
+
         labelString.setText("Hi, " + Engine.LOGGED_USER);
         buttonOK.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {

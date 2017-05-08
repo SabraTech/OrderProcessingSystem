@@ -1,11 +1,7 @@
 package Controller;
 
 import Model.Engine;
-import View.ActionsViewsManager.AddManager;
-import View.ActionsViewsManager.ConfirmOrder;
-import View.ActionsViewsManager.PlaceOrder;
-import View.ActionsViewsManager.PromoteUser;
-import View.StartWindow;
+import View.ActionsViewsManager.*;
 import net.sf.dynamicreports.jasper.builder.JasperReportBuilder;
 import net.sf.dynamicreports.report.builder.DynamicReports;
 import net.sf.dynamicreports.report.builder.column.Columns;
@@ -47,10 +43,6 @@ public class ActionHandlerManager {
         return new ViewReportsListener();
     }
 
-    public ActionListener getLogOutManagerListener() {
-        return new LogOutManagerListener();
-    }
-
     public class AddBookListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -63,7 +55,7 @@ public class ActionHandlerManager {
     public class ModifyListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            AddManager dialog = new AddManager();
+            ModifyBook dialog = new ModifyBook();
             dialog.pack();
             dialog.setVisible(true);
         }
@@ -145,13 +137,4 @@ public class ActionHandlerManager {
         }
     }
 
-    public class LogOutManagerListener implements ActionListener {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            StartWindow dialog = new StartWindow();
-            dialog.pack();
-            // close the view
-            dialog.setVisible(true);
-        }
-    }
 }

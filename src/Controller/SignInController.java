@@ -70,6 +70,7 @@ public class SignInController {
                 String type = res.getString("Type");
                 LOGGED_USER = res.getString("username");
                 if(type.equalsIgnoreCase("Manager")){
+                    CreateShoppingCart();
                     Manager dialog = new Manager();
                     dialog.pack();
                     view.setVisible(false);

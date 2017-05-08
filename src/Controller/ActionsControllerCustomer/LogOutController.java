@@ -2,6 +2,7 @@ package Controller.ActionsControllerCustomer;
 
 import Model.Engine;
 import View.CustomerUI;
+import View.Manager;
 import View.StartWindow;
 
 import javax.swing.*;
@@ -12,7 +13,12 @@ import java.awt.event.ActionListener;
  * Created by sabra on 06/05/17.
  */
 public class LogOutController {
-    CustomerUI view;
+    CustomerUI view = null;
+    Manager view2 = null;
+
+    public LogOutController(Manager view) {
+        this.view2 = view;
+    }
 
     public LogOutController(CustomerUI view) {
         this.view = view;
@@ -33,10 +39,17 @@ public class LogOutController {
                 JOptionPane.showMessageDialog(null, "Error in close shopping cart");
             }
             StartWindow dialog = new StartWindow();
-            dialog.pack();
-            view.setVisible(false);
-            view.dispose();
-            dialog.setVisible(true);
+            if (view != null) {
+                dialog.pack();
+                view.setVisible(false);
+                view.dispose();
+                dialog.setVisible(true);
+            } else {
+                dialog.pack();
+                view2.setVisible(false);
+                view2.dispose();
+                dialog.setVisible(true);
+            }
         }
     }
 }
