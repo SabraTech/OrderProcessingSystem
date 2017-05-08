@@ -69,7 +69,9 @@ public class ActionHandlerCustomer {
     public class CheckOutListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e){
-            CheckOut cActionView = new CheckOut();
+            CheckOutCustomer dialog = new CheckOutCustomer();
+            dialog.pack();
+            dialog.setVisible(true);
         }
     }
 }
