@@ -1,6 +1,6 @@
-package View.ActionsViewsCustomer;
+package View.ActionsViewsManager;
 
-import Controller.ActionsControllerCustomer.ManageCartController;
+import Controller.ActionsControllerManager.ConfirmOrderController;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,25 +10,23 @@ import java.sql.ResultSetMetaData;
 import java.util.ArrayList;
 import java.util.Vector;
 
-public class ManageCartCustomer extends JDialog {
+public class ConfirmOrder extends JDialog {
     private JPanel contentPane;
     private JButton buttonOK;
     private JButton buttonCancel;
-    private JLabel totalPriceLabel;
-    private JTable table1;
     private JTextField textField1;
-    private JButton deleteButton;
+    private JButton confirmButton;
+    private JTable table1;
     private JPanel tablePanel;
-    private ManageCartController manageCartController;
+    private ConfirmOrderController confirmOrderController;
 
-    public ManageCartCustomer() {
+    public ConfirmOrder() {
         setContentPane(contentPane);
         setModal(true);
         getRootPane().setDefaultButton(buttonOK);
-        manageCartController = new ManageCartController(this);
-        viewTotalPrice();
-        fillTheViewTable();
-        deleteButton.addActionListener(manageCartController.getManageCartControllerListener());
+        confirmOrderController = new ConfirmOrderController(this);
+        viewTable();
+        confirmButton.addActionListener(confirmOrderController.getConfirmOrderControllerListener());
 
         buttonOK.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -70,16 +68,11 @@ public class ManageCartCustomer extends JDialog {
         return textField1.getText();
     }
 
-    public void viewTotalPrice() {
-        Double total = manageCartController.getTotalPrice();
-        totalPriceLabel.setText(String.valueOf(total));
-    }
-
-    public void fillTheViewTable() {
+    public void viewTable() {
         ArrayList columnNames = new ArrayList();
         ArrayList data = new ArrayList();
         try {
-            ResultSet res = manageCartController.getResultTable();
+            ResultSet res = confirmOrderController.getResultTable();
             ResultSetMetaData meta = res.getMetaData();
             int columns = meta.getColumnCount();
             // get column names
@@ -95,7 +88,7 @@ public class ManageCartCustomer extends JDialog {
                 data.add(row);
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Error in view Results!");
+            JOptionPane.showMessageDialog(null, "Error in view orders!");
         }
         Vector columnNamesVector = new Vector();
         Vector dataVector = new Vector();

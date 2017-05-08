@@ -29,8 +29,7 @@ public class PlaceOrderController {
             StringBuilder sb = new StringBuilder();
             sb.append("INSERT INTO `order_System`.`Orders` VALUES ( ");
             sb.append(Integer.parseInt(data[0]) + ", ");
-            sb.append(Integer.parseInt(data[1]) + ", ");
-            sb.append("\"No\");");
+            sb.append(Integer.parseInt(data[1]) + ";");
             try {
                 Engine.STATEMENT.execute(sb.toString());
                 JOptionPane.showMessageDialog(null, "Order Placed!");
