@@ -40,7 +40,8 @@ public class AddController {
                 sb.append("\"" + Engine.LOGGED_USER + "\", ");
                 sb.append(isbn + ", ");
                 sb.append(cnt + ", ");
-                sb.append(cnt * p + ")");
+                sb.append(cnt * p + ", ");
+                sb.append(", curDate();");
                 Engine.STATEMENT.execute(sb.toString());
             } catch (Exception e1) {
                 e1.printStackTrace();

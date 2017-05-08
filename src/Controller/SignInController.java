@@ -34,6 +34,7 @@ public class SignInController {
         sb.append("ISBN int not null, ");
         sb.append("num_books int, ");
         sb.append("price double, ");
+        sb.append("shopDate date, ");
         sb.append("primary key (item_ID));");
         StringBuilder sb1 = new StringBuilder();
         sb1.append("ALTER TABLE `order_System`.`ShoppingCart` ADD CONSTRAINT `shopfk1` ");

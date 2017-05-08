@@ -28,7 +28,7 @@ public class CheckOutController {
             StringBuilder sb = new StringBuilder();
             sb.append("call update_quantities();");
             StringBuilder sb1 = new StringBuilder();
-            sb1.append("call update_sold();");
+            sb1.append("call update_sold()");
             try {
                 Engine.STATEMENT.execute(sb.toString());
                 JOptionPane.showMessageDialog(null, "Check out completed successfully!");
