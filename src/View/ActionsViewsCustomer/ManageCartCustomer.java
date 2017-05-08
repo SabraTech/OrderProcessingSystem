@@ -104,7 +104,7 @@ public class ManageCartCustomer extends JDialog {
         ArrayList data = new ArrayList();
         try {
             ResultSet res = manageCartController.getResultTable();
-            table1 = new JTable(buildTableModel(res));
+            table1.setModel(buildTableModel(res));
             //tablePanel.add(new JScrollPane(table1), BorderLayout.SOUTH);
         } catch (Exception e) {
             e.printStackTrace();
