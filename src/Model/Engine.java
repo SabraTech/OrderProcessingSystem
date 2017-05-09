@@ -22,6 +22,7 @@ public class Engine {
             System.out.println("Connecting to database...");
             CONNECTION = DriverManager.getConnection(DataBaseURL, USER, PASSWORD);
             STATEMENT = CONNECTION.createStatement();
+            STATEMENT.execute("call optimize_sold();");
         }catch(Exception e){
             e.printStackTrace();
         }

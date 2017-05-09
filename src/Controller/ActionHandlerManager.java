@@ -127,9 +127,9 @@ public class ActionHandlerManager {
                 reportA.show();
                 reportA.toPdf(new FileOutputStream("/home/sabra/ReportA.pdf"));
                 reportB.show();
-                reportB.toPdf(new FileOutputStream("/home/sabra/ReportA.pdf"));
+                reportB.toPdf(new FileOutputStream("/home/sabra/ReportB.pdf"));
                 reportC.show();
-                reportC.toPdf(new FileOutputStream("/home/sabra/ReportA.pdf"));
+                reportC.toPdf(new FileOutputStream("/home/sabra/ReportC.pdf"));
             } catch (Exception e1) {
                 e1.printStackTrace();
                 JOptionPane.showMessageDialog(null, "error in output the reports");

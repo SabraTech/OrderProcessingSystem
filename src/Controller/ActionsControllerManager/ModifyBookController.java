@@ -34,14 +34,15 @@ public class ModifyBookController {
             ArrayList<String> data = view.getUpdatedData();
             System.out.println(data.get(2));
             StringBuilder sb = new StringBuilder();
-            sb.append("UPDATE `order_System`.`Book` SET title = \" " + data.get(0) + "\"");
-            sb.append(", publisher = \" " + data.get(1) + "\"");
-            sb.append(", publication_year = \" " + data.get(2) + "\"");
+            sb.append("UPDATE `order_System`.`Book` SET title = \"" + data.get(0) + "\"");
+            sb.append(", publisher = \"" + data.get(1) + "\"");
+            sb.append(", publication_year = \"" + data.get(2) + "\"");
             sb.append(", price = " + Double.parseDouble(data.get(3)));
-            sb.append(", category = \" " + data.get(4) + "\"");
+            sb.append(", category = \"" + data.get(4) + "\"");
             sb.append(", threshold = " + Integer.parseInt(data.get(5)));
             sb.append(", numberOfBooks = " + Integer.parseInt(data.get(6)));
             sb.append(" WHERE book_ISBN = " + Integer.parseInt(view.getBookISBN()) + ";");
+            System.out.println(sb.toString());
             try {
                 Engine.STATEMENT.execute(sb.toString());
                 JOptionPane.showMessageDialog(null, "Book Updated!");
