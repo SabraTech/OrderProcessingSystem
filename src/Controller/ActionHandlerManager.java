@@ -101,7 +101,7 @@ public class ActionHandlerManager {
                             Components.text("Total Sales Per Book for Last Month")
                                     .setHorizontalTextAlignment(HorizontalTextAlignment.CENTER))
                     .pageFooter(Components.pageXofY())
-                    .setDataSource("Select ISBN, sum(price) as total from `order_System`.`Sales` where `order_System`.`sales`.sold_date > DATE_SUB(NOW(), INTERVAL 1 MONTH) group by ISBN;", Engine.CONNECTION);
+                    .setDataSource("Select ISBN, sum(price) as total from `order_System`.`Sales` where `order_System`.`Sales`.sold_date >= DATE_SUB(NOW(), INTERVAL 1 MONTH) group by ISBN;", Engine.CONNECTION);
 
             reportB.columns(
                     Columns.column("User Name", "username", DataTypes.stringType()),

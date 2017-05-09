@@ -48,6 +48,7 @@ public class ConfirmOrderController {
                 JOptionPane.showMessageDialog(null, "Order Confirmed!");
                 view.viewTable();
             } catch (Exception e1) {
+                e1.printStackTrace();
                 JOptionPane.showMessageDialog(null, "Error in deleting item from Order!");
             }
         }

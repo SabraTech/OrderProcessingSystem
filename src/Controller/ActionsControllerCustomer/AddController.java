@@ -36,12 +36,12 @@ public class AddController {
                     p = price.getDouble(1);
                 }
                 StringBuilder sb = new StringBuilder();
-                sb.append("INSERT INTO ShoppingCart (username, ISBN, num_books, price) VALUES ( ");
+                sb.append("INSERT INTO ShoppingCart (username, ISBN, num_books, price, shopDate) VALUES ( ");
                 sb.append("\"" + Engine.LOGGED_USER + "\", ");
                 sb.append(isbn + ", ");
                 sb.append(cnt + ", ");
                 sb.append(cnt * p + ", ");
-                sb.append(", curDate();");
+                sb.append("curdate());");
                 Engine.STATEMENT.execute(sb.toString());
             } catch (Exception e1) {
                 e1.printStackTrace();

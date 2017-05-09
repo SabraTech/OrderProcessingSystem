@@ -37,6 +37,7 @@ public class CheckOutController {
                 JOptionPane.showMessageDialog(null, "Sales added successfully!");
                 Engine.CONNECTION.commit();
             } catch (Exception e1) {
+                e1.printStackTrace();
                 try {
                     Engine.CONNECTION.rollback();
                 }catch(Exception e2){
