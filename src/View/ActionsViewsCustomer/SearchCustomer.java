@@ -31,6 +31,7 @@ public class SearchCustomer extends JDialog {
         comboBox1.addItem("Publication Year");
         comboBox1.addItem("Price");
         comboBox1.addItem("Category");
+        comboBox1.addItem("Author");
 
         searchButton.addActionListener(searchController.getSearchControllerListener());
 

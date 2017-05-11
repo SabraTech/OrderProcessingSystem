@@ -43,6 +43,7 @@ public class AddController {
                 sb.append(cnt * p + ", ");
                 sb.append("curdate());");
                 Engine.STATEMENT.execute(sb.toString());
+                view.dispose();
             } catch (Exception e1) {
                 e1.printStackTrace();
                 JOptionPane.showMessageDialog(null, "Error in adding new book in cart!");

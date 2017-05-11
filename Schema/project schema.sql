@@ -1,3 +1,6 @@
+
+ drop schema `order_System`;
+
 create schema `order_System`;
 use `order_System`;
 
@@ -148,22 +151,35 @@ create procedure optimize_sold()
 begin
 
 delete from order_System.sold
-where order_System.Sales.sold_date < DATE_SUB(NOW(), INTERVAL 3 MONTH);
+where order_System.Sales.sold_date < DATE_SUB(CURDATE(), INTERVAL 3 MONTH);
 end //
 delimiter ;
 
 delimiter //
 create procedure update_quantities()
-begin
+begin 
 
-UPDATE `order_System`.`Book` SET `order_System`.`Book`.numberOfBooks = 
-( 
-	select `order_System`.`Book`.numberOfBooks - `order_System`.`ShoppingCart`.num_books 
-	from `order_System`.`Book`, `order_System`.`ShoppingCart` 
-	where `order_System`.`Book`.book_ISBN = `order_System`.`ShoppingCart`.ISBN
-) 
-where `order_System`.`Book`.book_ISBN = (select `order_System`.`ShoppingCart`.ISBN from `order_System`.`ShoppingCart`); 
-
+drop table if exists temp;
+ 
+create table temp (
+	temp_id int not null auto_increment,
+    isbn int not null,
+    num int not null,
+    primary key(temp_id)
+);
+ 
+ 
+insert into temp (isbn, num)
+select `order_System`.`Book`.book_ISBN , `order_System`.`Book`.numberOfBooks - `order_System`.`ShoppingCart`.num_books
+from `order_System`.`Book`, `order_System`.`ShoppingCart`
+where `order_System`.`Book`.book_ISBN = `order_System`.`ShoppingCart`.ISBN;
+ 
+UPDATE `order_System`.`Book`,temp
+SET `order_System`.`Book`.numberOfBooks = temp.num
+ 
+where `order_System`.`Book`.book_ISBN = temp.isbn;
+ 
+drop table temp; 
 
 end //
 delimiter ;
@@ -174,7 +190,7 @@ begin
 
 INSERT INTO `order_System`.`Sales` (ISBN, username, price, sold_date, quantity)  
 SELECT ISBN,username,price,shopDate,num_books
-FROM shoppingCart; 
+FROM `order_System`.`ShoppingCart`; 
 
 end //
 delimiter ;

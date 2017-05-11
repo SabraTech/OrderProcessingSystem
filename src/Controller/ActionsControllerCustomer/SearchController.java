@@ -54,6 +54,10 @@ public class SearchController {
                     sb.append("SELECT * FROM `order_System`.`Book` WHERE category = \"" + value + "\";");
                     break;
                 }
+                case "Author": {
+                    sb.append("SELECT * FROM `order_System`.`Book` WHERE book_ISBN IN(SELECT ISBN FROM `order_System`.`Authors` WHERE author = \"" + value + "\");");
+                    break;
+                }
                 default: {
 
                 }
